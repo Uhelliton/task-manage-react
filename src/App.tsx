@@ -23,16 +23,18 @@ function App() {
     setTasks(tasks.map(t => t.id === task.id ? {...t, completed: !t.completed} : t));
   }
   
+  const onTaskRemove = (task) => {
+    setTasks(tasks.filter(t => t.id !== task.id));
+  }
+  
   return (
     <div className="max-w-lg mx-auto my-10 bg-white p-8 rounded-xl shadow shadow-slate-300">
-
       <CreateTask/>
       <Task
         tasks={tasks}
         onTaskClick={handleTaskComplete}
+        onTaskRemove={onTaskRemove}
       />
-
-
       <p className="text-xs text-slate-500 text-center">Last updated 12 minutes ago</p>
     </div>
   )

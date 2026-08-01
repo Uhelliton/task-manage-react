@@ -10,9 +10,10 @@ export interface TaskItem {
 interface TaskProps {
   tasks: TaskItem[];
   onTaskClick: (task: TaskItem) => void;
+  onTaskRemove: (task: TaskItem) => void;
 }
 
-function Task({tasks, onTaskClick}: TaskProps) {
+function Task({tasks, onTaskClick, onTaskRemove}: TaskProps) {
   return (
     <div id="tasks" className="space-y-2">
       {tasks.map((task) => 
@@ -29,7 +30,7 @@ function Task({tasks, onTaskClick}: TaskProps) {
               {task.completed ? <s>{task.title}</s> : task.title}
             </div>
           </div>
-          <button type={"button"}>
+          <button type={"button"} onClick={() => onTaskRemove(task)} className="text-slate-500 hover:text-slate-700">
             <Trash />
           </button>
         </div>
