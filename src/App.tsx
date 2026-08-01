@@ -1,9 +1,10 @@
 import { useState } from "react";
-import Task from "./components/Task.tsx";
-import CreateTask from "./components/CreateTask.tsx";
+import Task from "./components/Task";
+import CreateTask from "./components/CreateTask";
+import type { TaskItem } from "./components/Task";
 
 function App() {
-  const [tasks, setTasks] = useState([
+  const [tasks, setTasks] = useState<TaskItem[]>([
     { id: 1, title: 'Task 1', description: 'Description 1', completed: false },
     { id: 2, title: 'Task 2', description: 'Description 2', completed: true },
     { id: 3, title: 'Task 3', description: 'Description 3', completed: false },
@@ -23,16 +24,17 @@ function App() {
   }
   
   return (
-    <>
-      <h1 className="text-sm text-red-500 font-bold ">
-        Hello world!
-      </h1>
+    <div className="max-w-lg mx-auto my-10 bg-white p-8 rounded-xl shadow shadow-slate-300">
+
       <CreateTask/>
-      <Task 
-        tasks={tasks} 
+      <Task
+        tasks={tasks}
         onTaskClick={handleTaskComplete}
       />
-    </>
+
+
+      <p className="text-xs text-slate-500 text-center">Last updated 12 minutes ago</p>
+    </div>
   )
 }
 
